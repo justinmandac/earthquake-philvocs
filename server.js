@@ -36,7 +36,6 @@ function mapEventArrayToObject(event) {
         },
         depthKm: parseFloat(event[3]),
         mag: parseFloat(event[4]),
-        location: event[5]
     };
 }
 
