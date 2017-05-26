@@ -17,7 +17,7 @@ const file = fs.readFileSync('events.html', 'utf-8');
 */
 function transformDate(dateStr) {
     const date = new Date(dateStr.replace('-', ''));
-
+    date.setTime(date.getTime() + date.getTimezoneOffset() * 60 * 100);
     return date;
 }
 
@@ -35,7 +35,8 @@ function mapEventArrayToObject(event) {
             lng: parseFloat(event[2])
         },
         depthKm: parseFloat(event[3]),
-        mag: parseFloat(event[4])
+        mag: parseFloat(event[4]),
+        location: event[5]
     };
 }
 
