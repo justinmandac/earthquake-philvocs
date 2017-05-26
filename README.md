@@ -1,5 +1,8 @@
 # Philvocs Event API
 
+## Installation
+Clone this repository and navigate to the project location. Run `npm install`.
+
 ## Run
 `node server.js`
 
