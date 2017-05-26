@@ -10,6 +10,11 @@ Data is accessible via `localhost:8081/events`.  A snapshot of the data from May
 The snapshot is accessible via `localhost:8081/events-cached.`
 
 ## Roadmap
+- Add URL params for data filtering.
+    - minimum magnitude
+    - location + radius
+    - number of items
+    - date
 - Frontend
 - Expose data from the past events.
 - Database for storing events.
