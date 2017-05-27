@@ -51,13 +51,14 @@ function parseResponse(html) {
     // This assumes that for every page that contains seismic data, the DOM
     // structure is the same.
     const table = $('.MsoNormalTable').get(3);
-    const rows = $(table).children('tr').slice(1);
     const data = {};
 
-    rows.each(function(i, el) {
+    // Scrape data from each row.
+    $(table).children('tr').slice(1).each((i, el) => {
         const data = [];
-        $(el).children('td').each(function(i, td) {
-            const clean = $(td).text().trim().replace(/\s/g,' ');
+        $(el).children('td').each((i, td) => {
+            const clean = $(td).text().trim()
+                .replace(/\s/g,' '); // Remove whitespace characters
             data.push(clean);
         });
 
