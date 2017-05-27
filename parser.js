@@ -43,7 +43,7 @@ function mapEventArrayToObject(event) {
  * @param {string} html The html retrieved for scraping.
  * @return {!Array<!Object>}
 */
-function parseResponse(html) {
+function parseMsoTable(html) {
     const rowsParsed = [];
     const $ = cheerio.load(html);
     // The 4th table is where the data is at.
@@ -73,5 +73,5 @@ function parseResponse(html) {
 module.exports = {
     transformDate,
     mapEventArrayToObject,
-    parseResponse
+    parseMsoTable
 };
