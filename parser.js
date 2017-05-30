@@ -70,8 +70,42 @@ function parseMsoTable(html) {
     return data;
 }
 
+/**
+ * @param {string} html
+ * @return {!Object<string,!Array<string,string>>}
+*/
+function scrapeLinks(html) {
+    const $ = cheerio.load(html);
+    const links = [];
+    const legacy = [];
+    const current = [];
+    // Get the links to monthly reports.
+    // Some of the links, however, lead to collapsed reports. As of writing,
+    // these reports are of the years 2011- 2014 and cannot be parsed by
+    // parser.parseMsoTable.
+    $('a').filter((i, el) => {
+        return $(el).attr("href").includes("EQLatest-Monthly");
+    }).each((i, el) => {
+        links.push(`http://www.phivolcs.dost.gov.ph/html/update_SOEPD/${$(el).attr("href")}`);
+    });
+
+    links.forEach(link => {
+       if (link.includes('Jan-Dec')) {
+           legacy.push(link);
+       } else {
+           current.push(link);
+       }
+    });
+
+    return {
+        current,
+        legacy
+    };
+}
+
 module.exports = {
     transformDate,
     mapEventArrayToObject,
-    parseMsoTable
+    parseMsoTable,
+    scrapeLinks
 };
